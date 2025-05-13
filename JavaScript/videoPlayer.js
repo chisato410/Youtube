@@ -1,4 +1,4 @@
-let player;
+export let player; // ← 変更点
 
 export function initPlayer(onReady) {
   const tag = document.createElement("script");
@@ -9,7 +9,7 @@ export function initPlayer(onReady) {
     player = new YT.Player("player", {
       height: "360",
       width: "640",
-      videoId: "VIDEO_ID", // ← 適宜変更
+      videoId: "ozbgCyMdciU",
       events: {
         onReady: onReady,
       },
