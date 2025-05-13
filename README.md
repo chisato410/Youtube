@@ -46,3 +46,40 @@ YouTube動画を再生しながら、特定の再生タイミングにメモを�
     </tr>
   </tbody>
 </table>
+
+# 処理の流れ
+<ol>
+  <li><strong>ページ読み込み時：</strong>
+    <ul>
+      <li><code>main.js</code> が読み込まれる</li>
+      <li><code>initPlayer()</code> で YouTube プレイヤーを初期化</li>
+      <li>プレイヤーが準備できたらコールバックで以下を実行：
+        <ul>
+          <li><code>loadNotes()</code> で保存済みのメモを表示</li>
+          <li><code>setupEventListeners()</code> でUIイベントを登録</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li><strong>メモの追加：</strong>
+    <ul>
+      <li>ユーザーがメモ入力 → 「＋ メモを追加」ボタンをクリック</li>
+      <li><code>ui.js</code> で <code>addNote()</code> を呼び出す</li>
+      <li><code>noteManager.js</code> で：
+        <ul>
+          <li>現在の再生時間を取得（<code>getCurrentTime()</code>）</li>
+          <li>メモを配列に追加して <code>localStorage</code> に保存</li>
+          <li><code>renderNotes()</code> でメモ一覧を再描画</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li><strong>メモをクリック：</strong>
+    <ul>
+      <li>「▶」ボタンをクリックすると <code>handleNoteClick()</code> が呼ばれる</li>
+      <li>該当メモの時間へ <code>seekTo()</code> でジャンプ</li>
+    </ul>
+  </li>
+</ol>
