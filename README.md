@@ -1,3 +1,81 @@
+<style>
+  body {
+    font-family: "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1, h2, h3 {
+    border-left: 5px solid #2196f3;
+    padding-left: 10px;
+    color: #2196f3;
+  }
+
+  ul, ol {
+    margin: 0 0 1rem 1.5rem;
+  }
+
+  code {
+    background-color: #eee;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 0.95em;
+    font-family: Consolas, monospace;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #2196f3;
+    color: white;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #f0f8ff;
+  }
+
+  li strong {
+    color: #333;
+  }
+
+  ul > li {
+    margin-bottom: 0.5rem;
+  }
+
+  .idea-list li::before {
+    content: "💡";
+    margin-right: 6px;
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
+</style>
+
 # Youtubeを使ったメモアプリ
 
 YouTube動画を再生しながら、特定の再生タイミングにメモを残せるアプリです。
