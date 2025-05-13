@@ -1,6 +1,9 @@
 import { player } from "./videoPlayer.js";
 
-const API_KEY = "AIzaSyC-qvW8IurfpIjs9L7_kXVEGGXJWLWLcq4";
+import * as dotenv from "dotenv";
+dotenv.config();
+
+console.log(process.env.YOUR_ENV_VAR); // .env に定義された変数を使える
 
 export function setupSearch() {
   const searchBtn = document.getElementById("searchBtn");
