@@ -1,4 +1,5 @@
-export let player; // ← 変更点
+// videoPlayer.js
+export let player;
 
 export function initPlayer(onReady) {
   const tag = document.createElement("script");
@@ -11,7 +12,7 @@ export function initPlayer(onReady) {
       width: "640",
       videoId: "ozbgCyMdciU",
       events: {
-        onReady: onReady,
+        onReady,
       },
     });
   };
@@ -23,4 +24,10 @@ export function getCurrentTime() {
 
 export function seekTo(seconds) {
   if (player) player.seekTo(seconds, true);
+}
+
+export function loadVideoById(id) {
+  if (player && typeof player.loadVideoById === "function") {
+    player.loadVideoById(id);
+  }
 }

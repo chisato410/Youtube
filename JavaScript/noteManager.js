@@ -1,3 +1,4 @@
+// noteManager.js
 import { getCurrentTime, seekTo } from "./videoPlayer.js";
 import { saveNotes, loadNotesFromStorage } from "./storage.js";
 import { formatTime } from "./utils.js";
@@ -32,8 +33,9 @@ function renderNotes() {
 }
 
 export function handleNoteClick(event) {
-  if (event.target.classList.contains("play-btn")) {
-    const index = event.target.dataset.index;
+  const target = event.target;
+  if (target.classList.contains("play-btn")) {
+    const index = target.dataset.index;
     seekTo(notes[index].time);
   }
 }

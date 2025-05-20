@@ -1,4 +1,5 @@
-import { player } from "./videoPlayer.js";
+// search.js
+import { loadVideoById } from "./videoPlayer.js";
 import { fallbackVideos } from "./fallbackVideos.js";
 
 const API_KEY = "AIzaSyC-qvW8IurfpIjs9L7_kXVEGGXJWLWLcq4";
@@ -22,13 +23,7 @@ export function setupSearch() {
       if (!res.ok) throw new Error("APIエラー");
       const data = await res.json();
 
-      searchList.innerHTML = "";
-      data.items.forEach((item) => {
-        const option = document.createElement("option");
-        option.value = item.id.videoId;
-        option.textContent = item.snippet.title;
-        searchList.appendChild(option);
-      });
+      populateSearchList(data.items);
     } catch (err) {
       console.warn("API使用不可またはオフライン。フェイルセーフで表示します。");
       showFallbackVideos();
@@ -37,10 +32,20 @@ export function setupSearch() {
 
   searchList.addEventListener("change", () => {
     const videoId = searchList.value;
-    if (videoId && player && typeof player.loadVideoById === "function") {
-      player.loadVideoById(videoId);
+    if (videoId) {
+      loadVideoById(videoId);
     }
   });
+
+  function populateSearchList(items) {
+    searchList.innerHTML = "";
+    items.forEach((item) => {
+      const option = document.createElement("option");
+      option.value = item.id.videoId;
+      option.textContent = item.snippet.title;
+      searchList.appendChild(option);
+    });
+  }
 
   function showFallbackVideos() {
     searchList.innerHTML = "";

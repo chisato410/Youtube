@@ -1,3 +1,4 @@
+// storage.js
 export function saveNotes(notes) {
   localStorage.setItem("notes", JSON.stringify(notes));
 }

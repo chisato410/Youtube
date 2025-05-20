@@ -1,16 +1,18 @@
+// ui.js
 import { addNote, handleNoteClick } from "./noteManager.js";
 
 export function setupEventListeners() {
-  document.getElementById("addMemo").addEventListener("click", () => {
-    const input = document.getElementById("memoText");
-    const text = input.value.trim();
+  const addMemoBtn = document.getElementById("addMemo");
+  const memoTextArea = document.getElementById("memoText");
+  const memoList = document.getElementById("memoList");
+
+  addMemoBtn.addEventListener("click", () => {
+    const text = memoTextArea.value.trim();
     if (text) {
       addNote(text);
-      input.value = "";
+      memoTextArea.value = "";
     }
   });
 
-  document
-    .getElementById("memoList")
-    .addEventListener("click", handleNoteClick);
+  memoList.addEventListener("click", handleNoteClick);
 }
