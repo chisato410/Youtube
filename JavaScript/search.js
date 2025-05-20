@@ -1,9 +1,7 @@
+// 検索機能
 import { player } from "./videoPlayer.js";
 
-import * as dotenv from "dotenv";
-dotenv.config();
-
-console.log(process.env.YOUR_ENV_VAR); // .env に定義された変数を使える
+const API_KEY = "AIzaSyC-qvW8IurfpIjs9L7_kXVEGGXJWLWLcq4";
 
 export function setupSearch() {
   const searchBtn = document.getElementById("searchBtn");
@@ -23,7 +21,7 @@ export function setupSearch() {
       const res = await fetch(url);
       const data = await res.json();
 
-      searchList.innerHTML = ""; // リスト初期化
+      searchList.innerHTML = "";
       data.items.forEach((item) => {
         const option = document.createElement("option");
         option.value = item.id.videoId;
@@ -35,7 +33,6 @@ export function setupSearch() {
     }
   });
 
-  // 選択したら動画をプレイヤーで再生
   searchList.addEventListener("change", () => {
     const videoId = searchList.value;
     if (videoId && player && typeof player.loadVideoById === "function") {
