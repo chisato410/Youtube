@@ -1,5 +1,5 @@
-// 検索機能
 import { player } from "./videoPlayer.js";
+import { fallbackVideos } from "./fallbackVideos.js";
 
 const API_KEY = "AIzaSyC-qvW8IurfpIjs9L7_kXVEGGXJWLWLcq4";
 
@@ -19,6 +19,7 @@ export function setupSearch() {
 
     try {
       const res = await fetch(url);
+      if (!res.ok) throw new Error("APIエラー");
       const data = await res.json();
 
       searchList.innerHTML = "";
@@ -29,7 +30,8 @@ export function setupSearch() {
         searchList.appendChild(option);
       });
     } catch (err) {
-      console.error("検索に失敗:", err);
+      console.warn("API使用不可またはオフライン。フェイルセーフで表示します。");
+      showFallbackVideos();
     }
   });
 
@@ -39,4 +41,14 @@ export function setupSearch() {
       player.loadVideoById(videoId);
     }
   });
+
+  function showFallbackVideos() {
+    searchList.innerHTML = "";
+    fallbackVideos.forEach((video) => {
+      const option = document.createElement("option");
+      option.value = video.id;
+      option.textContent = video.title;
+      searchList.appendChild(option);
+    });
+  }
 }
