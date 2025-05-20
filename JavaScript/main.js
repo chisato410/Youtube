@@ -9,6 +9,5 @@ window.onload = () => {
     loadNotes();
     setupEventListeners();
     setupSearch();
-    fallbackVideos();
   });
 };
